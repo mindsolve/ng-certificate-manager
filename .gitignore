@@ -1,0 +1,7 @@
+**/venv
+
+**/*.ini
+!**/*.example.ini
+
+/config.json
+/config.yml

@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schema.felix-ern.de/ng-certificate-manager.schema.json",
+  "title": "Config Root",
+  "description": "The configuration base element",
+  "type": "object",
+  "properties": {
+    "general": {
+      "description": "This element contains configuration options valid for all certificates.",
+      "type": "object",
+      "properties": {
+        "email": {
+          "title": "Account E-Mail-Address",
+          "description": "The LetsEncrypt account e-mail-address used for requesting all certificates.",
+          "type": "string"
+        },
+        "additional_arguments": {
+          "title": "Additional Arguments",
+          "description": "Global certbot arguments, added to all certbot calls. Examples include the parameter `--test-cert`, which instructs certbot to use the staging/testing ACME API.",
+          "type": "string"
+        },
+        "plugins": {
+          "title": "Globally Active Plugins",
+          "description": "A list of plugins to run for all certificates. Specify the plugins by their filename in the folder `plugins`.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "email",
+        "additional_arguments",
+        "plugins"
+      ]
+    },
+    "certificates": {
+      "title": "Individual Certificate Configurations",
+      "description": "List of individual certificate configurations. At least one entry is required.",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/certEntry"
+      }
+    }
+  },
+  "required": [
+    "general",
+    "certificates"
+  ],
+  "$defs": {
+    "certEntry": {
+      "type": "object",
+      "required": [
+        "certificate_name",
+        "domains",
+        "additional_arguments",
+        "plugins"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "certificate_name": {
+          "type": "string",
+          "title": "Certificate Name",
+          "description": "The main domain name, used as identifier for this certificate."
+        },
+        "additional_arguments": {
+          "type": "string",
+          "title": "Additional Arguments (Optional)",
+          "description": "The certificate-specific certbot arguments,for example validator settings.",
+          "examples": ["--dns-ovh --dns-ovh-credentials /root/ovh/ovh-cred.ini"]
+        },
+        "domains": {
+          "type": "array",
+          "title": "Domains",
+          "description": "The domains to be included in this certificate. At least one domain must be specified.",
+          "examples": [["example.com", "*.example.com"]],
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "plugins": {
+          "type": "array",
+          "title": "Certificate specific plugins",
+          "description": "Plugins to run specifically for this certificate",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
