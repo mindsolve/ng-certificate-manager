@@ -32,7 +32,7 @@ Interpreter das Skript ausgeführt werden muss (siehe https://realguess.net/2013
 ### Eigene Plugins/Deployment-Skripte:
 
 Erstelle eine ausführbare Datei, z.B. ein Bash-Skript im Ordner `cert-plugins`.
-Dieser Datei stehen folgende Informationen sowohl als Paramter als auch als Umgebungsvariable zur Verfügung:
+Diesem Plugin stehen folgende Informationen (sowohl als Paramter als auch als Umgebungsvariable) zur Verfügung:
 
 | Parameter Nr. | Umgebungsvariable                     | Beschreibung                                                                                                                                                        |
 |---------------|---------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|

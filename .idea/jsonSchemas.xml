@@ -31,6 +31,9 @@
                   <Item>
                     <option name="path" value="config.json" />
                   </Item>
+                  <Item>
+                    <option name="path" value="config.yml" />
+                  </Item>
                 </list>
               </option>
             </SchemaInfo>
