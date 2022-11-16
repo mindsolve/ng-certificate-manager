@@ -1,0 +1,25 @@
+---
+"$schema": https://schema.felix-ern.de/ng-certificate-manager.schema.json
+general:
+  email: email@example.com
+  additional_arguments: "--test-cert"
+  plugins:
+    - "backup-generated-certificate.sh"
+
+certificates:
+  - certificate_name: example.com
+    additional_arguments: "--dns-ovh --dns-ovh-credentials /root/ovh/ovh-cred.ini"
+    domains:
+      - example.com
+      - "*.example.com"
+      - example.net
+      - "*.example.net"
+    plugins:
+      - "install-on-webserver.sh"
+
+  - certificate_name: mail.example.com
+    additional_arguments: "--dns-ovh --dns-ovh-credentials /root/ovh/ovh-cred.ini"
+    domains:
+      - mail.example.com
+    plugins:
+      - "install-on-mailserver.sh"
