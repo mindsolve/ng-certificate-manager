@@ -37,8 +37,7 @@
         }
       },
       "required": [
-        "email",
-        "additional_arguments"
+        "email"
       ],
       "additionalProperties": false
     },
@@ -75,13 +74,20 @@
           "type": "string",
           "title": "Additional Arguments (Optional)",
           "description": "The certificate-specific certbot arguments,for example validator settings.",
-          "examples": ["--dns-ovh --dns-ovh-credentials /root/ovh/ovh-cred.ini"]
+          "examples": [
+            "--dns-ovh --dns-ovh-credentials /root/ovh/ovh-cred.ini"
+          ]
         },
         "domains": {
           "type": "array",
           "title": "Domains",
           "description": "The domains to be included in this certificate. At least one domain must be specified.",
-          "examples": [["example.com", "*.example.com"]],
+          "examples": [
+            [
+              "example.com",
+              "*.example.com"
+            ]
+          ],
           "items": {
             "type": "string"
           },
