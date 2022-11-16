@@ -12,11 +12,13 @@
         "email": {
           "title": "Account E-Mail-Address",
           "description": "The LetsEncrypt account e-mail-address used for requesting all certificates.",
-          "type": "string"
+          "type": "string",
+          "minLength": 3,
+          "format": "email"
         },
         "additional_arguments": {
           "title": "Additional Arguments",
-          "description": "Global certbot arguments, added to all certbot calls. Examples include the parameter `--test-cert`, which instructs certbot to use the staging/testing ACME API.",
+          "description": "Global certbot arguments, added to all certbot calls. Examples include the parameter `--test-cert`, which instructs certbot to use the testing ACME API.",
           "type": "string"
         },
         "plugins": {
@@ -26,13 +28,19 @@
           "items": {
             "type": "string"
           }
+        },
+        "custom_certbot_binary": {
+          "title": "Custom Certbot Binary",
+          "description": "The path to a custom certbot binary. Only needed if certbot is not in the PATH.",
+          "type": "string",
+          "minLength": 1
         }
       },
       "required": [
         "email",
-        "additional_arguments",
-        "plugins"
-      ]
+        "additional_arguments"
+      ],
+      "additionalProperties": false
     },
     "certificates": {
       "title": "Individual Certificate Configurations",
@@ -54,8 +62,7 @@
       "required": [
         "certificate_name",
         "domains",
-        "additional_arguments",
-        "plugins"
+        "additional_arguments"
       ],
       "additionalProperties": false,
       "properties": {
