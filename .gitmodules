@@ -1,3 +1,0 @@
-[submodule "cert-plugins"]
-	path = cert-plugins
-	url = https://github.com/mindsolve/ng-certificate-manager-private-plugins.git
