@@ -3,5 +3,7 @@
 **/*.ini
 !**/*.example.ini
 
-/config.json
 /config.yml
+
+# Private PyCharm configs
+/.idea/deployment.xml
