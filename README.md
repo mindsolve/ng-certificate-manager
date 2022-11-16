@@ -34,10 +34,10 @@ Interpreter das Skript ausgeführt werden muss (siehe https://realguess.net/2013
 Erstelle eine ausführbare Datei, z.B. ein Bash-Skript im Ordner `cert-plugins`.
 Dieser Datei stehen folgende Informationen sowohl als Paramter als auch als Umgebungsvariable zur Verfügung:
 
-| Parameter Nr. | Umgebungsvariable | Beschreibung                                                                  |
-|---------------|-------------------|-------------------------------------------------------------------------------|
-| 1             | `_CERT_NAME`      | Der Name des Zertifikats (`certificate_name` in der `config.yml`)             |
-| 2             | `_FULLCHAIN`      | Der Pfad zur `fullchain.pem`, dem Zertifikat incl. der Zertifikatshierarchie. |
-| 3             | `_KEY`            | Der Pfad zur `privkey.pem`, dem privaten Schlüssel zum Zertifikat.            |
+| Parameter Nr. | Umgebungsvariable                     | Beschreibung                                                                                                                                                        |
+|---------------|---------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1             | `_CERT_NAME`                          | Der Name des Zertifikats (`certificate_name` in der `config.yml`)                                                                                                   |
+| 2             | `_CERT_FULLCHAIN`<br/>~~`_FULLCERT`~~ | Der Pfad zur `fullchain.pem`, dem Zertifikat incl. der Zertifikatshierarchie.<br/>Der veraltete Name `_FULLCERT` wird aus Kompatibilitätsgründen weiterhin gesetzt. |
+| 3             | `_CERT_KEY`<br/>~~`_KEY`~~            | Der Pfad zur `privkey.pem`, dem privaten Schlüssel zum Zertifikat.<br/>Der veraltete Name `_KEY` wird aus Kompatibilitätsgründen weiterhin gesetzt.                 |
 
 Beispiele für Deployment-Skripte bzw. Plugins befinden sich in `example-cert-plugins`.
