@@ -5,15 +5,15 @@
 echo -e "Test plugin called! Dumping parameters:\n"
 
 echo "Certificate Name:"
-echo "-> \"$1\""
+echo "-> \"${_CERT_NAME}\""
 echo
 
 echo "The Certificate fullchain is at:"
-echo "-> $2"
+echo "-> ${_FULLCHAIN}"
 echo
 
 echo "The Certificate Private Key is at:"
-echo "-> $3"
+echo "-> ${_KEY}"
 echo
 
 echo "End of test plugin"
