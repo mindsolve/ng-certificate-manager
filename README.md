@@ -18,7 +18,7 @@ sondern nur noch ein simples Deployment-Skript ("plugin") auf dem Server, der de
 3. Führe das Skript manuell aus, um die Konfiguration zu testen
 4. [Erstelle ein Deployment-Skript/Plugin, um das Zertifikat zu verteilen](#eigene-pluginsdeployment-skripte)
 5. Füge das Skript in die Crontab ein, oder erstelle eine SystemD Timer Unit.
-   Es ist not nötig, das Skript öfter als täglich aufzurufen.
+   Es ist nicht nötig, das Skript öfter als täglich aufzurufen.
 
 ### Funktionsweise:
 
@@ -32,12 +32,22 @@ Interpreter das Skript ausgeführt werden muss (siehe https://realguess.net/2013
 ### Eigene Plugins/Deployment-Skripte:
 
 Erstelle eine ausführbare Datei, z.B. ein Bash-Skript im Ordner `cert-plugins`.
-Diesem Plugin stehen folgende Informationen (sowohl als Paramter als auch als Umgebungsvariable) zur Verfügung:
+Diesem Plugin stehen zwei Arten von Informationen zur Verfügung:
+
+1. **Generell verfügbare Informationen:**
+   Diese sind sowohl als Parameter als auch als Umgebungsvariable für das Plugin verfügbar. Folgende Werte werden immer
+   an ein Plugin übermittelt:
 
 | Parameter Nr. | Umgebungsvariable                     | Beschreibung                                                                                                                                                        |
 |---------------|---------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | 1             | `_CERT_NAME`                          | Der Name des Zertifikats (`certificate_name` in der `config.yml`)                                                                                                   |
 | 2             | `_CERT_FULLCHAIN`<br/>~~`_FULLCERT`~~ | Der Pfad zur `fullchain.pem`, dem Zertifikat incl. der Zertifikatshierarchie.<br/>Der veraltete Name `_FULLCERT` wird aus Kompatibilitätsgründen weiterhin gesetzt. |
 | 3             | `_CERT_KEY`<br/>~~`_KEY`~~            | Der Pfad zur `privkey.pem`, dem privaten Schlüssel zum Zertifikat.<br/>Der veraltete Name `_KEY` wird aus Kompatibilitätsgründen weiterhin gesetzt.                 |
+
+2. **Individuelle Einstellungen:**
+   Diese werden in der Konfigurationsdatei beim jeweiligen Plugin-Aufruf mit dem Schlüssel `settings` gesetzt.  
+   Die gesetzen Werte sind für das Plugin als Umgebungsvariablen verfügbar. So können wiederverwendbare 
+   Deployment-Skripte/Plugins erstellt werden, welche sich sonst nur durch Kleinigkeiten unterscheiden würden (z.B.
+   einem Hostnamen bei Dateitransfers).
 
 Beispiele für Deployment-Skripte bzw. Plugins befinden sich in `example-cert-plugins`.

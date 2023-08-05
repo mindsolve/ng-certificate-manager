@@ -4,7 +4,7 @@ general:
   email: email@example.com
   additional_arguments: "--test-cert"
   plugins:
-    - "backup-generated-certificate.sh"
+    - name: "backup-generated-certificate.sh"
 
 certificates:
   - certificate_name: example.com
@@ -15,11 +15,19 @@ certificates:
       - example.net
       - "*.example.net"
     plugins:
-      - "install-on-webserver.sh"
+      - name: "install-on-server.sh"
+        settings:
+          deployment_hostname: "web01.example.com"
+          deployment_username: "automation"
+          deployment_dir: "/etc/ssl"
 
   - certificate_name: mail.example.com
     additional_arguments: "--dns-ovh --dns-ovh-credentials /root/ovh/ovh-cred.ini"
     domains:
       - mail.example.com
     plugins:
-      - "install-on-mailserver.sh"
+      - name: "install-on-server.sh"
+        settings:
+          deployment_hostname: "mail.example.com"
+          deployment_username: "root"
+          deployment_dir: "/etc/ssl"

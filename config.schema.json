@@ -26,7 +26,7 @@
           "description": "A list of plugins to run for all certificates. Specify the plugins by their filename in the folder `plugins`.",
           "type": "array",
           "items": {
-            "type": "string"
+            "$ref": "#/$defs/pluginEntry"
           }
         },
         "custom_certbot_binary": {
@@ -98,8 +98,28 @@
           "title": "Certificate specific plugins",
           "description": "Plugins to run specifically for this certificate",
           "items": {
-            "type": "string"
+            "$ref": "#/$defs/certEntry"
           }
+        }
+      }
+    },
+    "pluginEntry": {
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "Plugin name",
+          "description": "Filename of a plugin to run. Must exist in the cert-plugins folder, be executable and have a valid shebang."
+        },
+        "settings": {
+          "type": "object",
+          "title": "List of plugin settings",
+          "description": "List of plugin settings as key-value pairs. Available to the plugins as environment variables.",
+          "additionalProperties": true
         }
       }
     }
