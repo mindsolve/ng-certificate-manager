@@ -1,4 +1,4 @@
-**/venv
+**/*venv
 
 **/*.ini
 !**/*.example.ini
@@ -7,3 +7,4 @@
 
 # Private PyCharm configs
 /.idea/deployment.xml
+/.idea/sonarlint
