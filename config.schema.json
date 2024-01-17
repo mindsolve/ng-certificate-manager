@@ -98,7 +98,7 @@
           "title": "Certificate specific plugins",
           "description": "Plugins to run specifically for this certificate",
           "items": {
-            "$ref": "#/$defs/certEntry"
+            "$ref": "#/$defs/pluginEntry"
           }
         }
       }
